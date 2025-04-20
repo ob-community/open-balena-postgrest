@@ -1,12 +1,8 @@
-FROM postgrest/postgrest:latest as postgrest
+FROM postgrest/postgrest:latest AS postgrest
 
-FROM debian:bullseye
+FROM node:22-bookworm-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
-
-# Update nodejs version to 17.x
-RUN apt-get update && apt-get install -y curl && \
-    curl -sL https://deb.nodesource.com/setup_17.x | bash -
 
 RUN apt-get update && apt-get install -y \
     libpq5 \
@@ -23,7 +19,7 @@ COPY ./postgrest-proxy.js ./
 COPY ./package.json ./
 COPY ./package-lock.json ./
 
-RUN npm install --no-fund --no-update-notifier
+RUN npm ci --no-fund --no-update-notifier
 
 COPY start.sh ./
 

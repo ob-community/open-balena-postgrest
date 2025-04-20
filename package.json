@@ -1,17 +1,28 @@
 {
   "name": "postgrest-proxy",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Postgrest Proxy",
   "author": "David Caputo <dcaput@harmoni.io>",
   "main": "postgrest-proxy.js",
   "scripts": {
-    "start": "node postgrest-proxy.js"
+    "start": "cross-env NODE_ENV=development node postgrest-proxy.js",
+    "build": "echo \"No build step defined\"",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
+    "prettier": "prettier --write .",
+    "test": "jest"
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.0.0",
-    "express": "^4.16.1",
-    "http-proxy-middleware": "^2.0.1",
-    "njwt": "^1.2.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "http-proxy-middleware": "^3.0.5",
+    "njwt": "^2.0.1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "eslint": "^9.24.0",
+    "jest": "^29.7.0",
+    "prettier": "^3.5.3"
   }
 }
