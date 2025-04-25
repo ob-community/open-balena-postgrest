@@ -13,14 +13,16 @@ app.use(
   '/',
   createProxyMiddleware({
     target: 'http://127.0.0.1:3000',
-    proxyReq: async (proxyReq, req, _res) => {
-      try {
-        jwt.verify(req.headers.authorization.split('Bearer ')[1], process.env.PGRST_JWT_SECRET);
-        const token = jwt.create({ role: process.env.OPENBALENA_DB_ROLE }, process.env.PGRST_JWT_SECRET).compact();
-        proxyReq.setHeader('Authorization', `Bearer ${token}`);
-      } catch (e) {
-        proxyReq.destroy();
-      }
+    on: {
+      proxyReq: async (proxyReq, req, _res) => {
+        try {
+          jwt.verify(req.headers.authorization.split('Bearer ')[1], process.env.PGRST_JWT_SECRET);
+          const token = jwt.create({ role: process.env.OPENBALENA_DB_ROLE }, process.env.PGRST_JWT_SECRET).compact();
+          proxyReq.setHeader('Authorization', `Bearer ${token}`);
+        } catch (e) {
+          proxyReq.destroy();
+        }
+      },
     },
     changeOrigin: true,
   }),
