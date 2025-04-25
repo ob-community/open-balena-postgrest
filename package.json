@@ -1,6 +1,6 @@
 {
   "name": "postgrest-proxy",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Postgrest Proxy",
   "author": "David Caputo <dcaput@harmoni.io>",
   "main": "postgrest-proxy.js",
