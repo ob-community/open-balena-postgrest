@@ -1,6 +1,6 @@
 FROM postgrest/postgrest:latest AS postgrest
 
-FROM node:22-bookworm-slim
+FROM node:24-bookworm-slim
 
 ARG DEBIAN_FRONTEND=noninteractive
 
