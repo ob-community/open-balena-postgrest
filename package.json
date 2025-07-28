@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "cors": "^2.8.5",
-    "dotenv": "^16.5.0",
+    "dotenv": "^17.2.1",
     "express": "^5.1.0",
     "http-proxy-middleware": "^3.0.5",
     "njwt": "^2.0.1"
