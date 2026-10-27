@@ -28,4 +28,12 @@ app.use(
   }),
 );
 
-app.listen(8000);
+const server = app.listen(8000);
+
+const shutdown = () => {
+  setTimeout(() => process.exit(1), 25_000).unref();
+  server.close(() => process.exit(0));
+  server.closeIdleConnections();
+};
+process.once('SIGTERM', shutdown);
+process.once('SIGINT', shutdown);

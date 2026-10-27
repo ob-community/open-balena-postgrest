@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     nodejs \
     node-typescript \
     jq \
+    tini \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=postgrest /bin/postgrest /bin/postgrest
@@ -27,4 +28,5 @@ ENV PGRST_DB_SCHEMA=public
 ENV PGRST_DB_ANON_ROLE=anon
 ENV PGRST_SERVER_HOST=127.0.0.1
 
+ENTRYPOINT ["tini", "--"]
 CMD ["bash", "start.sh"]
